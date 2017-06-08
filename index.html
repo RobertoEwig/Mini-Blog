@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="miniblog">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Questão 5, Pratica">
+    <meta name="author" content="Roberto R. Americo">
+
+    <title>Parva Tabulleta</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.css" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="about.html">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Parva Tabulleta</h1>
+                        <hr class="small">
+                        <span class="subheading">O pequeno tabloide com cometarios fresquinhos sobre o grande Imperio!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container" ng-controller="PostControl">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ng-if="isHomeOn()" >
+				<ul class="pager">
+                    <li class="next">
+                        <a ng-show="buscaPag" href="" ng-click="setBuscar(true)">Todos Posts</a>
+						<input type="text" class="form-control" placeholder="Busca na pagina" ng-model="buscaPag" ng-model-options="{ getterSetter: true }" id="buscaPagina"/>
+                    </li>
+                </ul>
+                <div class="post-preview" ng-repeat="post in getPosts() | filter:{body:buscaPag}" >
+						<h2 class="post-title">
+							{{stringUp(post.title)}}
+						</h2>
+						<h4 class="post-subtitle">
+							{{post.body}}
+						</h4>
+						<div ng-repeat="user in getUsers() | filter:{id: post.userId}" class="post-meta">
+							<p ng-if="search(user.id, post.userId)">Posted by <a href="" ng-click="outUser(user)">{{user.username}}</a></p>
+						</div>
+						<h5 class="post-comment"><a href="" ng-click="showComment.setComment(post.id)">
+							<p>Comentarios</p>
+						</a></h5>
+						<div ng-repeat="comment in getComments() | filter:{postId: post.id}">
+							<div ng-if="search(comment.postId, post.id)">
+								<div  ng-if="showComment.isCommentOn(comment.postId)" class="comment" >
+									<h5>
+										{{stringUp(comment.name)}},
+									</h5>
+									<h6>
+										{{stringUp(comment.body)}}
+									</h6>
+									<cite>by {{comment.email}}</cite>
+									<hr>
+								</div>
+							</div>
+						</div>
+						<hr>
+                </div>
+				
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#" ng-show="!getBusca()" ng-click="nextView()">Proximos Posts</a>
+						<a ng-show="getBusca()" href="#" ng-click="setHomeOn()" input text="reset">Home</a>
+                    </li>
+                </ul>
+				
+		</div>
+			<!--Users-->
+			<div ng-if="isUserOn()" >
+					
+				<div ng-repeat="user in getUsers() | filter: getUserView()">
+					<div class="user">
+						<h1>{{user.username}}</h1>
+						<h2>Nome: {{user.name}}</h2>
+						<h2>Email: <a href="{{user.email}}">{{user.email}}</a></h2>
+						<h2>Phone: {{user.phone}}</h2>
+						<h2>Website: {{user.website}}</h2>
+						<h2>Address:
+							<strong>{{user.address.street}}, {{user.address.suite}}
+								<br>{{user.address.city}}, {{user.address.zipcode}}</strong>
+						</h2>
+						<hr>
+						Company:
+						<h1>{{user.company.name}}, </h1>
+						<h2>Slogan, <i>"{{user.company.catchPhrase}}"</i></h2>
+						<h2>Bs., "{{user.company.bs}}"</h2>
+						<hr>
+					</div>
+				</div>
+				<br>
+				<ul class="pager">
+				    <li class="next">
+					<a href="#" ng-click="setHomeOn()">Inicio</a>
+				    </li>
+				</ul>				
+			</div>					
+		</div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p class="copyright text-muted">Copyright &copy; Roberto R. Américo 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Theme JavaScript -->
+	<script src="js/clean-blog.js"></script>
+	
+	<!-- Angular-->
+	<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="angular/app.js"></script>
+
+</body>
+
+</html>
