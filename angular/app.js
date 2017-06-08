@@ -7,7 +7,7 @@ angular.module("miniblog").controller("PostControl", function($scope, $http){
 	
 	//carregar os posts da API
 	loadPosts =  function(){
-		$http.get('http://jsonplaceholder.typicode.com/posts').then(function (response){
+		$http.get('https://jsonplaceholder.typicode.com/posts').then(function (response){
 			posts = response.data;
 			numberPosts = posts.length;
 			//carregar o numero de posts dado pela var "postPerPag"
@@ -47,14 +47,14 @@ angular.module("miniblog").controller("PostControl", function($scope, $http){
 	
 	//carrega os usuarios da API
 	loadUsers = function(){
-		$http.get('http://jsonplaceholder.typicode.com/users').then(function (response){
+		$http.get('https://jsonplaceholder.typicode.com/users').then(function (response){
 			users = response.data;
 		});
 	};		
 	
 	//carrega os comentarios da API
 	loadComments = function(){
-		$http.get('http://jsonplaceholder.typicode.com/comments').then(function (response){
+		$http.get('https://jsonplaceholder.typicode.com/comments').then(function (response){
 			comments = response.data;
 		});
 	};
