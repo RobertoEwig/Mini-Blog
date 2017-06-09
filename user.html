@@ -1,0 +1,27 @@
+<div ng-if="isUserOn()" >
+	<div ng-repeat="user in getUsers() | filter: getUserView()">
+		<div class="user">
+			<h1 ng-bind="user.username"></h1>
+			<h2>Nome: <span ng-bind="user.name"></span></h2>
+			<h2>Email: <a href="{{user.email}}" ng-bind="user.email"></a></h2>
+			<h2>Phone: <span ng-bind="user.phone"></span></h2>
+			<h2>Website: <span ng-bind="user.website"></span></h2>
+			<h2>Address:
+				<strong><span ng-bind="user.address.street"></span>, <span ng-bind="user.address.suite"></span>
+					<br><span ng-bind="user.address.city"></span>, <span ng-bind="user.address.zipcode"></span></strong>
+			</h2>
+			<hr>
+			Company:
+			<h1><span ng-bind="user.company.name"></span>, </h1>
+			<h2>Slogan, <i>"<span ng-bind="user.company.catchPhrase"></span>"</i></h2>
+			<h2>B.S., "<span ng-bind="user.company.bs"></span>"</h2>
+			<hr>
+		</div>
+	</div>
+	<br>
+	<ul class="pager">
+	    <li class="next">
+		<a href="#" ng-click="setHomeOn()">Primus</a>
+	    </li>
+	</ul>				
+</div>	

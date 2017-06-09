@@ -75,14 +75,10 @@
                     </li>
                 </ul>
                 <div class="post-preview" ng-repeat="post in getPosts() | filter:{body:buscaPag}" >
-						<h2 class="post-title">
-							{{stringUp(post.title)}}
-						</h2>
-						<h4 class="post-subtitle">
-							{{post.body}}
-						</h4>
+						<h2 class="post-title" ng-bind="stringUp(post.title)"></h2>
+						<h4 class="post-subtitle" ng-bind="post.body"></h4>
 						<div ng-repeat="user in getUsers() | filter:{id: post.userId}" class="post-meta">
-							<p ng-if="search(user.id, post.userId)">Per <a href="" ng-click="outUser(user)">{{user.username}}</a></p>
+							<p ng-if="search(user.id, post.userId)">Per <a href="" ng-click="outUser(user)" ng-bind="user.username"></a></p>
 						</div>
 						<h5 class="post-comment"><a href="" ng-click="showComment.setComment(post.id)">
 							<p>Comment</p>
@@ -90,13 +86,12 @@
 						<div ng-repeat="comment in getComments() | filter:{postId: post.id}">
 							<div ng-if="search(comment.postId, post.id)">
 								<div  ng-if="showComment.isCommentOn(comment.postId)" class="comment" >
-									<h5>
-										{{stringUp(comment.name)}},
+									<h5 ng-bind="stringUp(comment.name)">
+										,
 									</h5>
-									<h6>
-										{{stringUp(comment.body)}}
+									<h6 ng-bind="stringUp(comment.body)">
 									</h6>
-									<cite>by {{comment.email}}</cite>
+									<cite>by </cite><cite ng-bind="comment.email"></cite>
 									<hr>
 								</div>
 							</div>
@@ -114,33 +109,7 @@
 				
 		</div>
 			<!--Users-->
-			<div ng-if="isUserOn()" >
-					
-				<div ng-repeat="user in getUsers() | filter: getUserView()">
-					<div class="user">
-						<h1>{{user.username}}</h1>
-						<h2>Nome: {{user.name}}</h2>
-						<h2>Email: <a href="{{user.email}}">{{user.email}}</a></h2>
-						<h2>Phone: {{user.phone}}</h2>
-						<h2>Website: {{user.website}}</h2>
-						<h2>Address:
-							<strong>{{user.address.street}}, {{user.address.suite}}
-								<br>{{user.address.city}}, {{user.address.zipcode}}</strong>
-						</h2>
-						<hr>
-						Company:
-						<h1>{{user.company.name}}, </h1>
-						<h2>Slogan, <i>"{{user.company.catchPhrase}}"</i></h2>
-						<h2>B.S., "{{user.company.bs}}"</h2>
-						<hr>
-					</div>
-				</div>
-				<br>
-				<ul class="pager">
-				    <li class="next">
-					<a href="#" ng-click="setHomeOn()">Primus</a>
-				    </li>
-				</ul>				
+			<div ng-if="isUserOn()" ng-include="'user.html'">			
 			</div>					
 		</div>
     </div>
