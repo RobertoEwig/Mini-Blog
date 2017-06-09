@@ -28,7 +28,7 @@
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
-                    Menu <i class="fa fa-bars"></i>
+                    Arbitrium <i class="fa fa-bars"></i>
                 </button>
             </div>
 
@@ -36,10 +36,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="index.html">Primus</a>
                     </li>
                     <li>
-                        <a href="about.html">Sobre</a>
+                        <a href="about.html">In</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +56,8 @@
                     <div class="site-heading">
                         <h1>Parva Tabulleta</h1>
                         <hr class="small">
-                        <span class="subheading">O pequeno tabloide com cometarios fresquinhos sobre o grande Imperio!</span>
+                        <span class="subheading">"O pequeno tabloide com cometarios fresquinhos sobre o grande Imperio!*"</span>
+			<h6>*Translata per Portuguese</h6>
                     </div>
                 </div>
             </div>
@@ -69,8 +70,8 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ng-if="isHomeOn()" >
 				<ul class="pager">
                     <li class="next">
-                        <a ng-show="buscaPag" href="" ng-click="setBuscar(true)">Todos Posts</a>
-						<input type="text" class="form-control" placeholder="Busca na pagina" ng-model="buscaPag" ng-model-options="{ getterSetter: true }" id="buscaPagina"/>
+                        <a ng-show="buscaPag" href="" ng-click="setBuscar(true)">Omnia</a>
+						<input type="text" class="form-control" placeholder="Quaerere Stripes" ng-model="buscaPag" ng-model-options="{ getterSetter: true }" id="buscaPagina"/>
                     </li>
                 </ul>
                 <div class="post-preview" ng-repeat="post in getPosts() | filter:{body:buscaPag}" >
@@ -81,10 +82,10 @@
 							{{post.body}}
 						</h4>
 						<div ng-repeat="user in getUsers() | filter:{id: post.userId}" class="post-meta">
-							<p ng-if="search(user.id, post.userId)">Posted by <a href="" ng-click="outUser(user)">{{user.username}}</a></p>
+							<p ng-if="search(user.id, post.userId)">Per <a href="" ng-click="outUser(user)">{{user.username}}</a></p>
 						</div>
 						<h5 class="post-comment"><a href="" ng-click="showComment.setComment(post.id)">
-							<p>Comentarios</p>
+							<p>Comment</p>
 						</a></h5>
 						<div ng-repeat="comment in getComments() | filter:{postId: post.id}">
 							<div ng-if="search(comment.postId, post.id)">
@@ -106,8 +107,8 @@
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
-                        <a href="#" ng-show="!getBusca()" ng-click="nextView()">Proximos Posts</a>
-						<a ng-show="getBusca()" href="#" ng-click="setHomeOn()" input text="reset">Home</a>
+                        <a href="#" ng-show="!getBusca()" ng-click="nextView()">Prope Stipes</a>
+						<a ng-show="getBusca()" href="#" ng-click="setHomeOn()" input text="reset">Primus</a>
                     </li>
                 </ul>
 				
@@ -130,14 +131,14 @@
 						Company:
 						<h1>{{user.company.name}}, </h1>
 						<h2>Slogan, <i>"{{user.company.catchPhrase}}"</i></h2>
-						<h2>Bs., "{{user.company.bs}}"</h2>
+						<h2>B.S., "{{user.company.bs}}"</h2>
 						<hr>
 					</div>
 				</div>
 				<br>
 				<ul class="pager">
 				    <li class="next">
-					<a href="#" ng-click="setHomeOn()">Inicio</a>
+					<a href="#" ng-click="setHomeOn()">Primus</a>
 				    </li>
 				</ul>				
 			</div>					
