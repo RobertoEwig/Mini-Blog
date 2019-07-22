@@ -1,2 +1,2 @@
 # robertoewig.github.io
-Minibloh Angular.js + Jsonplacehold
+Miniblog Angular.js + Jsonplacehold
